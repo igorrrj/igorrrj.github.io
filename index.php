@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 Monaco;
 }
@@ -49,3 +50,26 @@
 \
   </body>\
 </html>}
+=======
+<?php
+/**
+ * Telegram Bot тупо бот access token и URL.
+ */
+$access_token = 'XXXXX:XXXXXXXXXXXXXXXXXXXXXXX';
+$api = 'https://api.telegram.org/bot' . $access_token;
+/**
+ * Задаём основные переменные.
+ */
+$output = json_decode(file_get_contents('php://input'), TRUE);
+@$chat_id = $output['message']['chat']['id'];
+@$message = $output['message']['text'];
+// команды тупо-бота
+switch($message) {
+    case '/start':
+    sendMessage($chat_id, "\xF0\x9F\x93\xA1 тупобот на связи!");
+    break;
+}
+function sendMessage($chat_id, $message) {
+  file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message) . '&parse_mode=html');
+}
+>>>>>>> c8050538c239c06e38470ee730e8a008434ed73b
